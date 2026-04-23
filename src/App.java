@@ -35,7 +35,7 @@ public class App extends Application{
             searchPane.getChildren().add(searchBar);
             HBox systemButtons = new HBox();
             searchPane.getChildren().add(systemButtons);
-            searchPane.setAlignment(Pos.CENTER);
+            systemButtons.setAlignment(Pos.CENTER);
 
             Button imperial = new Button("Imperial");
             Button metric   = new Button("Metric");
