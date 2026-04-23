@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.net.*;
 public class Conditions {
     private String name;
-    private double temperature;
+    private String temperature;
     private String description;
-    private double windSpeed;
-    private double feelsLike;
+    private String windSpeed;
+    private String feelsLike;
 
     Conditions(int code, int system){
         dataGet(code, system);
@@ -15,7 +15,7 @@ public class Conditions {
         return name;
     }
 
-    public double getTemp(){
+    public String getTemp(){
         return temperature;
     }
 
@@ -23,11 +23,11 @@ public class Conditions {
         return description;
     }
 
-    public double getWindSpeed(){
+    public String getWindSpeed(){
         return windSpeed;
     }
 
-    public double getFeelsLike(){
+    public String getFeelsLike(){
         return feelsLike;
     }
 
@@ -53,13 +53,13 @@ public class Conditions {
                 else if(split[i].contains("temp_f") && system == 0){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    temperature = Double.parseDouble(temp);
+                    temperature = temp+"F";
                 }
                 //temp in C
                 else if(split[i].contains("temp_c") && system == 1){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    temperature = Double.parseDouble(temp);
+                    temperature = temp+"C";
                 }
                 //text description e.g. "Partly cloudy"
                 else if(split[i].contains("text")){
@@ -69,25 +69,25 @@ public class Conditions {
                 else if(split[i].contains("wind_mph") && system == 0){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    windSpeed = Double.parseDouble(temp);
+                    windSpeed = temp+" MPH";
                 }
                 //windspeed in kph
                  else if(split[i].contains("wind_kph") && system == 1){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    windSpeed = Double.parseDouble(temp);
+                    windSpeed = temp+" KPH";
                  }
                  //temperature it feels like in F
                  else if(split[i].contains("feelslike_f") && system == 0){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    feelsLike = Double.parseDouble(temp);
+                    feelsLike = temp+"F";
                  }
                  //temperature it feels like in C
                  else if(split[i].contains("feelslike_c") && system == 1){
                     String temp = split[i+1].replace(":","");
                     temp = temp.replace(",","");
-                    feelsLike = Double.parseDouble(temp);
+                    feelsLike = temp+"C";
                  }
             }
         }

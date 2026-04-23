@@ -63,25 +63,25 @@ public class Forecast {
                     if(split2[j].contains("maxtemp_f") && system == 0){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        tempHigh[day] = temp;
+                        tempHigh[day] = temp+"F";
                     }
                     //temp high in C
                     else if(split2[j].contains("maxtemp_c") && system == 1){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        tempHigh[day] = temp;
+                        tempHigh[day] = temp+"C";
                     }
                     //temp low in F
                     else if(split2[j].contains("mintemp_f") && system == 0){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        tempLow[day] = temp;
+                        tempLow[day] = temp+"F";
                     }
                     //temp low in C
                     else if(split2[j].contains("mintemp_c") && system == 1){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        tempLow[day] = temp;
+                        tempLow[day] = temp+"C";
                     }
                     //text description e.g. "Partly cloudy"
                     else if(split2[j].contains("text")){
@@ -91,13 +91,13 @@ public class Forecast {
                     else if(split2[j].contains("maxwind_mph") && system == 0){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        windSpeed[day] = temp;
+                        windSpeed[day] = temp+" MPH";
                     }
                     //max windspeed in kph
                     else if(split2[j].contains("maxwind_kph") && system == 1){
                         String temp = split2[j+1].replace(":","");
                         temp = temp.replace(",","");
-                        windSpeed[day] = temp;
+                        windSpeed[day] = temp+" KPH";
                     }
                     //chance of precipitation
                     else if(split2[j].contains("daily_chance_of_rain")){

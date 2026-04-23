@@ -1,9 +1,7 @@
-import java.lang.reflect.GenericDeclaration;
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -14,12 +12,12 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.event.ActionEvent;
 import javafx.scene.layout.StackPane;
 
 public class App extends Application{
 
     int code = 0;
+    int system = 0;
     @Override
     public void start(Stage stage){
         try{
@@ -35,6 +33,15 @@ public class App extends Application{
             HBox searchBar = new HBox();
             searchBar.setAlignment(Pos.CENTER);
             searchPane.getChildren().add(searchBar);
+            HBox systemButtons = new HBox();
+            searchPane.getChildren().add(systemButtons);
+            searchPane.setAlignment(Pos.CENTER);
+
+            Button imperial = new Button("Imperial");
+            Button metric   = new Button("Metric");
+
+            systemButtons.getChildren().addAll(imperial,metric);
+
 
             //search bar
             TextField codeEntry = new TextField();
@@ -46,9 +53,9 @@ public class App extends Application{
 
             //current weather page
             String[] data = getConditions(code);
-            Text temp = new Text(data[0] + "F");
+            Text temp = new Text(data[0]);
             temp.setStyle("-fx-font: 200 arial;");
-            Text feel = new Text(data[1] + "F");
+            Text feel = new Text(data[1]);
             feel.setStyle("-fx-font: 120 arial;");
             Text desc = new Text(data[2]);
             desc.setStyle("-fx-font: 100 arial;");
@@ -95,12 +102,12 @@ public class App extends Application{
             for(int i = 0; i < 7; i++){
                 daysData[i] = new VBox();
                 daysData[i].setAlignment(Pos.CENTER);
-                dataFields[0][i].setText("High: " + forecastData[0][i] + "F");
+                dataFields[0][i].setText("High: " + forecastData[0][i]);
                 dataFields[0][i].setStyle("-fx-font:20 arial;");
-                dataFields[1][i].setText("Low: " + forecastData[1][i] + "F");
+                dataFields[1][i].setText("Low: " + forecastData[1][i]);
                 dataFields[1][i].setStyle("-fx-font:20 arial;");
                 dataFields[2][i].setText(forecastData[2][i]);
-                dataFields[3][i].setText(forecastData[3][i] + " MPH");
+                dataFields[3][i].setText(forecastData[3][i]);
                 dataFields[3][i].setStyle("-fx-font:15 arial;");
                 dataFields[4][i].setText(forecastData[4][i] + "%");
                 dataFields[4][i].setStyle("-fx-font:15 arial;");
@@ -115,8 +122,8 @@ public class App extends Application{
                 new EventHandler<ActionEvent>(){
                     public void handle(ActionEvent e){
                     String[] data = getConditions(code);
-                    temp.setText(data[0] + "F");
-                    feel.setText(data[1] + "F");
+                    temp.setText(data[0]);
+                    feel.setText(data[1]);
                     desc.setText(data[2]);
                     wind.setText(data[3]);
                     }
@@ -133,10 +140,10 @@ public class App extends Application{
                         String[][] forecastData = getForecast(code);
                         for(int i = 0; i < 7; i++){
                     
-                            dataFields[0][i].setText("High: " + forecastData[0][i] + "F");
-                            dataFields[1][i].setText("Low: " +forecastData[1][i] + "F");
+                            dataFields[0][i].setText("High: " + forecastData[0][i]);
+                            dataFields[1][i].setText("Low: " +forecastData[1][i]);
                             dataFields[2][i].setText(forecastData[2][i]);
-                            dataFields[3][i].setText(forecastData[3][i] + " MPH");
+                            dataFields[3][i].setText(forecastData[3][i]);
                             dataFields[4][i].setText(forecastData[4][i] + "%");
                         }
                     }
@@ -150,8 +157,8 @@ public class App extends Application{
                         root.getChildren().removeAll(dayFormatting, forecastButtons);
 
                         String[] data = getConditions(code);
-                        temp.setText(data[0] + "F");
-                        feel.setText(data[1] + "F");
+                        temp.setText(data[0]);
+                        feel.setText(data[1]);
                         desc.setText(data[2]);
                         wind.setText(data[3]);
                         root.getChildren().add(current);
@@ -174,8 +181,8 @@ public class App extends Application{
 
                         //add current page
                         String[] data = getConditions(code);
-                        temp.setText(data[0] + "F");
-                        feel.setText(data[1] + "F");
+                        temp.setText(data[0]);
+                        feel.setText(data[1]);
                         desc.setText(data[2]);
                         wind.setText(data[3]);
                         current.getChildren().addAll(temp,feel,desc,wind,refresh,forecastButton);
@@ -189,6 +196,23 @@ public class App extends Application{
 
                     }
                 });
+
+                imperial.setOnAction(
+                    new EventHandler<ActionEvent>(){
+                        public void handle(ActionEvent e){
+                            system = 0;
+                        }
+                    }
+                );
+
+                metric.setOnAction(
+                    new EventHandler<ActionEvent>(){
+                        public void handle(ActionEvent e){
+                            system = 1;
+                        }
+                    }
+                );
+
             stage.setScene(scene);
             stage.show();
         }
@@ -235,18 +259,18 @@ public class App extends Application{
     }
 
     String[] getConditions(int code){
-        Conditions current = new Conditions(code,0);
+        Conditions current = new Conditions(code,system);
         String[] data = new String[4];
-        data[0] = current.getTemp()+"";
-        data[1] = current.getFeelsLike()+"";
+        data[0] = current.getTemp();
+        data[1] = current.getFeelsLike();
         data[2] = current.getDesc();
-        data[3] = current.getWindSpeed()+"";
+        data[3] = current.getWindSpeed();
         return data;
 
     }
 
     String[][] getForecast(int code){
-        Forecast forecast = new Forecast(code,0);
+        Forecast forecast = new Forecast(code,system);
         String[][] data = new String[5][7];
         data[0] = forecast.getTempHigh();
         data[1] = forecast.getTempLow();
