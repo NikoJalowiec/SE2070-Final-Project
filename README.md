@@ -1,18 +1,5 @@
-## Getting Started
+## Final Project
+A very simple weather app that provides current weather data and a 7 day forecast.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Instructions:
+Download all the files into a folder, using a compiler of your choice compile the java files and then run. You will be prompted to enter a zipcode. Once you hit enter the app will retrieve the current weather for that zipcode including temperature, feels like temperature, windspeed, and a general description. From there you can refresh the page to get updated information or click the Forecast button to get a 7 day forecast for the area including temperature highs and lows, general descriptions, wind speed, and chance of rain. You can also return to the current weather.
