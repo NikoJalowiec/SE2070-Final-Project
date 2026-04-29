@@ -39,7 +39,7 @@ public class Forecast {
     //read data from API response
     private void dataGet(int code, int system){
         try {
-            String urlString = "https://api.weatherapi.com/v1/forecast.json?key=e861eb47c7104edcb73220752261504&q="+ code + "&days=7";
+            String urlString = "https://api.weatherapi.com/v1/forecast.json?key=37f38c74e7b74c9daab133617262904&q="+ code + "&days=7";
             URL url = new URL(urlString);
             Scanner input = new Scanner(url.openStream());
 

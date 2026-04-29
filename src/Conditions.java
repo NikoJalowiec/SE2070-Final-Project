@@ -34,7 +34,7 @@ public class Conditions {
     //read data from API response
     private void dataGet(int code, int system){
         try {
-            String urlString = "http://api.weatherapi.com/v1/current.json?key=e861eb47c7104edcb73220752261504&q=" + code;
+            String urlString = "http://api.weatherapi.com/v1/current.json?key=37f38c74e7b74c9daab133617262904&q=" + code;
             URL url = new URL(urlString);
             Scanner input = new Scanner(url.openStream());
 
